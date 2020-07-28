@@ -6,7 +6,7 @@ fn main() {
 
     let config = lib::Config::new(&args).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
-        process::exit(1);git 
+        process::exit(1);
     });
 
     println!("Searching for '{}' in file '{}'", config.query, config.filename);

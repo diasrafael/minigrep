@@ -117,8 +117,6 @@ Pick three.";
 
     #[test]
     #[should_panic]
-    // apaguei o 'expected' pq ele esperava uma mensagem específica
-    // de argumentos insuficientes que vc já apagou do new()
     fn it_fails_to_create_with_no_args() {
         let args = vec!["path".to_string()];
 

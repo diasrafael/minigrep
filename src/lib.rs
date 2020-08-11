@@ -28,7 +28,7 @@ pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str> {
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     contents
         .lines()
-        .filter(|line| line.contains(&query.to_lowercase()))
+        .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
         .collect()
 }
 

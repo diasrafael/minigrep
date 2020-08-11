@@ -2,7 +2,9 @@ use std::{env, process};
 mod lib;
 
 fn main() {
-     let config = lib::Config::new(env::args()).unwrap_or_else(|err| {
+    let args = env::args();
+
+    let config = lib::Config::new(args).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });

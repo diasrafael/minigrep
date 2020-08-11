@@ -39,7 +39,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(mut args: std::env::Args) -> Result<Config, &'static str> {
+    pub fn new(mut args: impl Iterator<Item=String>) -> Result<Config, &'static str> {
         
         //bypassing first parameter, i.e., the name of the program
         args.next();
@@ -104,10 +104,12 @@ Pick three.";
 
     #[test]
     fn it_creates_new_config() {
-        
-        let c = Config::new(&vec![
-            "path".to_string(), String::from("query"), String::from("filename")]
-        ).unwrap();
+        let args = vec![
+            "path".to_string(), String::from("query"), 
+            String::from("filename")
+        ];
+
+        let c = Config::new(args.into_iter()).unwrap();
 
         assert_eq!("query", c.query);
         assert_eq!("filename", c.filename);
@@ -116,6 +118,8 @@ Pick three.";
     #[test]
     #[should_panic(expected = "Mandatoy arguments not provided: query string and file name.")]
     fn it_fails_to_create_with_no_args() {
-        let _c: Config = Config::new(&vec!["path".to_string()]).unwrap();
+        let args = vec!["path".to_string()];
+
+        let _c: Config = Config::new(args.into_iter()).unwrap();
     }
 }
